@@ -1,5 +1,5 @@
 ## Stock-Data-Machine-Learning
-Classify stocks which stocks to buy using financial indicators from publicly traded companies. This project was completed using Apache PySpark.
+Over the past year, it seems that everyone has started to become interested in investing, including myself. After reading about investing strategies and and analyzing numbers like P/E ratios, I wondered if we could ultize financial data to inform a trading/investing strategy. In this project, I used Apache Pyspark to build predictive models to classify value in stocks.
 
 # Data
 My data comes from a Kaggle dataset(https://www.kaggle.com/cnic92/200-financial-indicators-of-us-stocks-20142018). This dataset contains over 220 financial indicators of over 4000 different publicly traded companies. Most of this information can be found in publicly available 10-k filings that companies release every year. This dataset contains a binary variable "Class" which is a 1 if the stock's value went up from the beginning of the year to the end of the year and a 0 if it went down. In this project, I used 83 of the financial indicators as predictors to predict whether a stock's value went up or down. The dataset contains 224 numerical variables and 1 categorical variable "Sector", indicating which sector the stock belongs to.
