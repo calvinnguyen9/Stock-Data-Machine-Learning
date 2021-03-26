@@ -1,2 +1,14 @@
-# Stock-Data-Machine-Learning
-Classify stocks which stocks to buy using over 225 financial indicators found from 10-k filings from publicly traded companies.
+## Stock-Data-Machine-Learning
+Classify stocks which stocks to buy using financial indicators from publicly traded companies. This project was completed using Apache PySpark.
+
+# Data
+My data comes from a Kaggle dataset(https://www.kaggle.com/cnic92/200-financial-indicators-of-us-stocks-20142018). This dataset contains over 220 financial indicators of over 4000 different publicly traded companies. Most of this information can be found in publicly available 10-k filings that companies release every year. This dataset contains a binary variable "Class" which is a 1 if the stock's value went up from the beginning of the year to the end of the year and a 0 if it went down. In this project, I used 83 of the financial indicators as predictors to predict whether a stock's value went up or down. The dataset contains 224 numerical variables and 1 categorical variable "Sector", indicating which sector the stock belongs to.
+
+# Goal
+In today's world there are many different strategies regarding trading, but it remains that the most sound strategy is to find stocks that have value and hold them. The goal of this project is to see if it is possible to find stocks that hold value using machine learning models. Ultimately, the goal was to take past stock market/financial information and use it to train models to predict whether a stocks value will go up or down given new information. Stocks classified as 1 indicate that the stock should be bought, because the value should be increasing. In practice, this model cannot be used to actually inform a trading/investing strategy because we don't have future data on a company's finances. However, the model can be used by giving it forecasted financial information or to analyze the key indicators that contribute to a stock's price.
+
+# Data Cleaning/Preprocessing
+Before using the data, some cleaning had to be done. Starting out with 225 variables, I wanted to get rid of some of them, because I knew only a fraction of these would provide significant predictive power in my models. To solve this, I filtered out columns that contained either more than 30% NA values or more than 50% values of 0.0. I felt that columns with high 0.0 values wouldn't provide much information being constant. After filtering, I handled missing values. I chose to do group-based mean imputation, by grouping the observations by Sector. By imputing with the sector average, I was taking into account the different industries and macrotrends within these industries represented in the dataset. In terms of preprocessing, I had to transform the categorical variable and scale the predictor variables. This was done using various feature transformers from the pyspark.ml.feature library along with pipelines.
+
+# Results
+From the pyspark.ml.classification library, I trained a Logistic Regression model, Support Vector Machine model, and a Random Forest model. The metric used to evaluate the models was weighted precision, because I wanted the model that could find the most stocks that hold value. The Random Forest model had a weighted precision score of 72.8%.
